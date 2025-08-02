@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Benefits Enrollment Helper</title>
+  <!-- Tailwind CSS CDN for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN for charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- jsPDF CDN for PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans p-6">
+  <div class="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+    <h1 class="text-2xl font-bold mb-6 text-center text-green-700">Benefits Enrollment Helper</h1>
+    
+    <form id="benefitsForm" class="space-y-4">
+      <div>
+        <label for="salary" class="block font-medium">Annual Salary ($):</label>
+        <input type="number" id="salary" required min="0" class="w-full border rounded p-2" />
+      </div>
+
+      <div>
+        <label for="familySize" class="block font-medium">Family Size:</label>
+        <select id="familySize" required class="w-full border rounded p-2">
+          <option value="1">1 (Just me)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5+</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="planType" class="block font-medium">Plan Type:</label>
+        <select id="planType" required class="w-full border rounded p-2">
+          <option value="hmo">HMO</option>
+          <option value="ppo">PPO</option>
+          <option value="hdhp">High Deductible (HDHP)</option>
+        </select>
+      </div>
+
+      <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded">
+        Calculate Estimated Costs
+      </button>
+    </form>
+
+    <div id="result" class="hidden mt-6 p-4 border rounded bg-gray-50">
+      <h2 class="text-xl font-semibold mb-2">Estimated Annual Cost</h2>
+      <p id="premiumText"></p>
+      <p id="oopText"></p>
+      <p id="totalText"></p>
+      <p id="percentText"></p>
+      <h3 class="mt-4 font-semibold">Cost Breakdown</h3>
+      <canvas id="costChart" class="my-4"></canvas>
+      <h3 class="mt-4 font-semibold">Questions to Ask During Enrollment</h3>
+      <ul id="questionsList" class="list-disc list-inside"></ul>
+      <button id="exportPDF" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
+        Export to PDF
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
